@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using Debug = AssignmentSystem.Services.AssignmentDebugConsole;
 
@@ -47,12 +48,54 @@ namespace Assignment08
 
         public void ASN01_ReverseString(string str)
         {
-            throw new NotImplementedException();
+          
+            if (string.IsNullOrEmpty(str))
+            {
+                Debug.Log(""); 
+                return;
+            }
+            Stack<char> charStack = new Stack<char>();
+            foreach (char c in str)
+            {
+                charStack.Push(c);
+            }
+
+          
+            StringBuilder sb = new StringBuilder();
+            while (charStack.Count > 0)
+            {
+                sb.Append(charStack.Pop());
+            }
+
+          
+            Debug.Log(sb.ToString());
         }
 
         public void ASN02_StackPalindrome(string str)
         {
-            throw new NotImplementedException();
+            Stack<char> stack = new Stack<char>();
+            foreach (char c in str)
+            {
+                stack.Push(c);
+            }
+
+            StringBuilder sb = new StringBuilder();
+            while (stack.Count > 0)
+            {
+                sb.Append(stack.Pop());
+            }
+
+            string reversedStr = sb.ToString();
+
+            
+            if (str == reversedStr)
+            {
+                Debug.Log($" is a palindrome");
+            }
+            else
+            {
+                Debug.Log($" is not a palindrome");
+            }
         }
 
         #endregion
