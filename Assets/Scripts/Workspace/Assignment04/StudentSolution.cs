@@ -1,8 +1,9 @@
+using AssignmentSystem.Services;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using AssignmentSystem.Services;
 using UnityEngine;
 using Debug = AssignmentSystem.Services.AssignmentDebugConsole;
 
@@ -32,22 +33,120 @@ namespace Assignment04
 
         public void AS01_SelectionSortDescending(int[] numbers)
         {
-            throw new System.NotImplementedException();
+            int n = numbers.Length;
+
+            for (int i = 0; i < n - 1; i++)
+            {
+
+                int maxIdx = i;
+                for (int j = i + 1; j < n; j++)
+                {
+                    if (numbers[j] > numbers[maxIdx])
+                    {
+                        maxIdx = j;
+                    }
+                }
+
+
+                int temp = numbers[maxIdx];
+                numbers[maxIdx] = numbers[i];
+                numbers[i] = temp;
+            }
+
+            foreach (int num in numbers)
+            {
+                Debug.Log(num);
+            }
+
         }
 
         public void AS02_BubbleSortDescending(int[] numbers)
         {
-            throw new System.NotImplementedException();
+            int n = numbers.Length;
+
+
+            for (int i = 0; i < n - 1; i++)
+            {
+
+                for (int j = 0; j < n - i - 1; j++)
+                {
+
+                    if (numbers[j] < numbers[j + 1])
+                    {
+
+                        int temp = numbers[j];
+                        numbers[j] = numbers[j + 1];
+                        numbers[j + 1] = temp;
+                    }
+                }
+            }
+            foreach (int num in numbers)
+            {
+                Debug.Log(num);
+            }
+
         }
 
         public void AS03_InsertionSortDescending(int[] numbers)
         {
-            throw new System.NotImplementedException();
+            int n = numbers.Length;
+            for (int i = 1; i < n; ++i)
+            {
+                int key = numbers[i];
+                int j = i - 1;
+
+
+                while (j >= 0 && numbers[j] < key)
+                {
+                    numbers[j + 1] = numbers[j];
+                    j = j - 1;
+                }
+                numbers[j + 1] = key;
+            }
+
+
+            foreach (int num in numbers)
+            {
+                Debug.Log(num);
+            }
         }
 
         public void AS04_FindTheSecondLargestNumber(int[] numbers)
         {
-            throw new System.NotImplementedException();
+            if (numbers == null || numbers.Length < 2)
+            {
+                Debug.Log("Array must have at least two numbers.");
+                return;
+            }
+
+            Array.Sort(numbers);
+
+
+            Array.Reverse(numbers);
+
+
+            int largest = numbers[0];
+            int? secondLargest = null;
+
+            for (int i = 1; i < numbers.Length; i++)
+            {
+                if (numbers[i] < largest)
+                {
+                    secondLargest = numbers[i];
+                    break;
+                }
+            }
+
+
+            if (secondLargest.HasValue)
+            {
+                Debug.Log(secondLargest.Value);
+            }
+            else
+            {
+                Debug.Log("No second largest number found (all numbers might be the same).");
+            }
+
         }
 
         #endregion

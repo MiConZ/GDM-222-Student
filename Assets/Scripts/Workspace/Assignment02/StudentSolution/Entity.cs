@@ -5,7 +5,7 @@ namespace Assignment02.StudentSolution
     public class Entity
     {
         public string name;
-        private Vector3 position;
+        private UnityEngine.Vector3 position;
         protected int health;
 
         public virtual void Update()
@@ -16,7 +16,7 @@ namespace Assignment02.StudentSolution
         {
         }
 
-        private void Move(Vector3 direction)
+        private void Move(UnityEngine.Vector3 direction)
         {
         }
     }

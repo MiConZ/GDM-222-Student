@@ -57,17 +57,77 @@ namespace Assignment06
 
         public void AS01_FindFirstAndLastElementOfArray(int[] array, int target)
         {
-            throw new NotImplementedException();
+            int first = -1;
+            int last = -1;
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array[i] == target)
+                {
+
+                    if (first == -1)
+                    {
+                        first = i;
+                    }
+
+
+                    last = i;
+                }
+            }
+            if (first == -1)
+            {
+                Debug.Log("-1");
+            }
+            else
+            {
+                Debug.Log(first);
+                Debug.Log(last);
+            }
         }
 
         public void AS02_FindMaxLessThan(int[] array, int target)
         {
-            throw new NotImplementedException();
+            Array.Sort(array);
+            int maxLessThanTarget = -1;
+            foreach (int value in array)
+            {
+                if (value < target)
+                {
+
+                    maxLessThanTarget = value;
+                }
+                else
+                {
+
+                    break;
+                }
+            }
+
+
+            Debug.Log(maxLessThanTarget);
         }
 
         public void AS03_FindRange(int[] array, int min, int max)
         {
-            throw new NotImplementedException();
+            Array.Sort(array);
+            bool found = false;
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array[i] >= min && array[i] <= max)
+                {
+                    Debug.Log(array[i]);
+                    found = true;
+                }
+
+                if (array[i] > max)
+                {
+                    break;
+                }
+            }
+            if (!found)
+            {
+                Debug.Log("Empty");
+            }
         }
 
         #endregion
