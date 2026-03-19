@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
@@ -104,7 +104,48 @@ namespace Assignment08
 
         public void EX01_ParenthesesChecker(string str)
         {
-            throw new NotImplementedException();
+
+            Stack<char> stack = new Stack<char>();
+
+            foreach (char c in str)
+            {
+                
+                if (c == '(' || c == '[' || c == '{')
+                {
+                    stack.Push(c);
+                }
+           
+                else if (c == ')' || c == ']' || c == '}')
+                {
+                 
+                    if (stack.Count == 0)
+                    {
+                        Debug.Log("Unbalanced");
+                        return;
+                    }
+
+                    char d = stack.Pop();
+
+                  
+                    if ((c == ')' && d != '(') ||
+                        (c == ']' && d != '[') ||
+                        (c == '}' && d != '{'))
+                    {
+                        Debug.Log("Unbalanced");
+                        return;
+                    }
+                }
+            }
+         
+            if (stack.Count == 0)
+            {
+                Debug.Log("Balanced");
+            }
+            else
+            {
+                Debug.Log("Unbalanced");
+            }
+
         }
 
         #endregion
