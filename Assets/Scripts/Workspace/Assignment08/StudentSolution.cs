@@ -18,12 +18,34 @@ namespace Assignment08
 
         public void LCT01_StackSyntax()
         {
-            throw new NotImplementedException();
+            Stack<int> stack = new Stack<int>();
+            stack.Push(1);
+            stack.Push(2);
+            stack.Push(3);
+            Debug.Log($"Count: {stack.Count}");
+
+            var popped = stack.Pop();
+            Debug.Log($"Popped: {popped}");
+
+            var top = stack.Peek();
+            Debug.Log($"Peek: {top}");
+            Debug.Log($"Count after peek: {stack.Count}");
         }
 
         public void LCT02_QueueSyntax()
         {
-            throw new NotImplementedException();
+            Queue<int> queue = new Queue<int>();
+            queue.Enqueue(1);
+            queue.Enqueue(2);
+            queue.Enqueue(3);
+            Debug.Log($"Count: {queue.Count}");
+
+            var dequeued = queue.Dequeue();
+            Debug.Log($"Dequeue: {dequeued}");
+
+            var front = queue.Peek();
+            Debug.Log($"Peek: {front}");
+            Debug.Log($"Count after dequeue: {queue.Count}");
         }
 
         public void LCT03_ActionStack()
@@ -31,7 +53,17 @@ namespace Assignment08
             Action action1 = new Action { Name = "Action 1" };
             Action action2 = new Action { Name = "Action 2" };
             Action action3 = new Action { Name = "Action 3" };
-            throw new NotImplementedException();
+
+            Stack<Action> actionStack = new Stack<Action>();
+            actionStack.Push(action1);
+            actionStack.Push(action2);
+            actionStack.Push(action3);
+
+            while (actionStack.Count > 0)
+            {
+                var action = actionStack.Pop();
+                Debug.Log($"Executing {action.Name}");
+            }
         }
 
         public void LCT04_ActionQueue()
@@ -39,7 +71,16 @@ namespace Assignment08
             Action action1 = new Action { Name = "Action 1" };
             Action action2 = new Action { Name = "Action 2" };
             Action action3 = new Action { Name = "Action 3" };
-            throw new NotImplementedException();
+            Queue<Action> actionQueue = new Queue<Action>();
+            actionQueue.Enqueue(action1);
+            actionQueue.Enqueue(action2);
+            actionQueue.Enqueue(action3);
+
+            while (actionQueue.Count > 0)
+            {
+                var action = actionQueue.Dequeue();
+                Debug.Log($"Executing {action.Name}");
+            }
         }
 
         #endregion

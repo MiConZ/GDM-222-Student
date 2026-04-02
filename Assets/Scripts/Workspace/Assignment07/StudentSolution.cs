@@ -63,9 +63,8 @@ namespace Assignment07
 
         private int SumOfNumbers(int[] numbers, int index)
         {
-            // base case
-
-            // recursive case
+            if (index >= numbers.Length) return 0;
+            return numbers[index] + SumOfNumbers(numbers, index + 1);
 
             return -1;
         }

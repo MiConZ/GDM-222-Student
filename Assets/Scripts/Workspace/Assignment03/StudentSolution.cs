@@ -16,7 +16,7 @@ namespace Assignment03
 
         public void LCT01_SyntaxLinkedList()
         {
-           // 1. สร้าง LinkedList ของประเภท string
+            // 1. สร้าง LinkedList ของประเภท string
             LinkedList<string> linkedList = new LinkedList<string>();
 
             // 2. เพิ่มข้อมูลที่ท้ายของ LinkedList
@@ -62,8 +62,8 @@ namespace Assignment03
 
         private void LCT01_PrintLinkedList(LinkedList<string> linkedList)
         {
-            Debug.Log("LinkedList...");
-            foreach(var node in linkedList)
+            Debug.Log("LinkedList ...");
+            foreach (var node in linkedList)
             {
                 Debug.Log(node);
             }
@@ -71,12 +71,12 @@ namespace Assignment03
 
         public void LCT02_SyntaxHashTable()
         {
-            
+
             Hashtable hashtable = new Hashtable();
             //Key Value
-            hashtable.Add(1,"Apple");
-            hashtable.Add(2,"Banana");
-            hashtable.Add("bad-fruit","Rotten Tomato");
+            hashtable.Add(1, "Apple");
+            hashtable.Add(2, "Banana");
+            hashtable.Add("bad-fruit", "Rotten Tomato");
 
             string fruit1 = (string)hashtable[1];
             string fruit2 = (string)hashtable[2];
@@ -105,7 +105,7 @@ namespace Assignment03
         public void LCT02_PrintHashTable(Hashtable hashtable)
         {
             Debug.Log("table ...");
-            foreach(DictionaryEntry entry in hashtable)
+            foreach (DictionaryEntry entry in hashtable)
             {
                 Debug.Log($"Key: {entry.Key}, Value: {entry.Value}");
             }
@@ -116,36 +116,41 @@ namespace Assignment03
             Dictionary<int, string> dict = new Dictionary<int, string>();
 
             dict.Add(1, "Apple");
-            dict.Add(2, "Banana");
-            dict[3] = "Cherry";
+            dict.Add(2, "Durian");
+            dict[3] = "Coconut";
 
             LCT03_PrintDictionary(dict);
 
             int keyToCheck = 1;
             bool hasKey = dict.ContainsKey(keyToCheck);
-            Debug.Log ($"has key {keyToCheck}: {hasKey}");
+
+            Debug.Log($"has key {keyToCheck} : {hasKey}");
+
             if (hasKey)
             {
                 string value = dict[keyToCheck];
-                Debug.Log($"value of key {keyToCheck} ({value})");
+                Debug.Log($"value of key {keyToCheck} : {value}");
             }
 
-            Debug.Log($"All key in dict");
+            Debug.Log("All keys in dictionary:");
             foreach (int key in dict.Keys)
             {
                 Debug.Log(key);
             }
 
-            int keytoremove = 1;
-            dict.Remove(keytoremove);
+            int keyToRemove = 1;
+            dict.Remove(keyToRemove);
+
             LCT03_PrintDictionary(dict);
+
             dict.Clear();
         }
 
         private void LCT03_PrintDictionary(Dictionary<int, string> dict)
         {
-            Debug.Log($"Dictionary has {dict.Count}" );
-            foreach(KeyValuePair<int, string> kvp in dict)
+            Debug.Log($"Dictionary has {dict.Count} keys");
+
+            foreach (KeyValuePair<int, string> kvp in dict)
             {
                 Debug.Log($"Key: {kvp.Key}, Value: {kvp.Value}");
             }
@@ -398,13 +403,67 @@ namespace Assignment03
         #region Extra
 
         public void EX01_GameEventQueue(LinkedList<GameEvent> eventQueue)
+
         {
-            throw new System.NotImplementedException();
+            if (eventQueue == null)
+            {
+                Debug.Log("Event queue is empty");
+            }
+            while (eventQueue.Count > 0)
+            {
+                GameEvent currentEvent = eventQueue.First.Value;
+                eventQueue.RemoveFirst();
+
+                string msg = currentEvent.Name;
+                string type = currentEvent.EventType;
+
+                Debug.Log("Processing event: " + msg);
+                Debug.Log("Remaining events in queue: " + eventQueue.Count);
+
+                if (type == "enemy")
+                {
+                    Debug.Log("Enemy event processed - " + msg);
+                }
+                else if (type == "powerup")
+                {
+                    Debug.Log("Power-up event processed - " + msg);
+                }
+                else if (type == "level")
+                {
+                    Debug.Log("Level event processed - " + msg);
+                }
+                else if (type == "achievement")
+                {
+                    Debug.Log("Achievement unlocked - " + msg);
+                }
+                else
+                {
+                    Debug.Log("Generic event processed - " + msg);
+                }
+            }
+
         }
 
         public void EX02_PlayerStatsTracker(Dictionary<string, int> playerStats, string statName, int value)
         {
-            throw new System.NotImplementedException();
+            if (playerStats == null) return;
+
+            if (playerStats.ContainsKey(statName))
+            {
+                playerStats[statName] += value;
+            }
+            else
+            {
+                playerStats.Add(statName, value);
+            }
+
+            Debug.Log("Updated " + statName + ": " + playerStats[statName]);
+            Debug.Log("Current player statistics:");
+
+            foreach (KeyValuePair<string, int> stat in playerStats)
+            {
+                Debug.Log(stat.Key + ": " + stat.Value);
+            }
         }
 
         #endregion

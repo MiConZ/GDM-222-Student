@@ -14,17 +14,68 @@ namespace Assignment04
         #region Lecture
         public void LCT01_SelectionSortAscending(int[] numbers)
         {
-            throw new System.NotImplementedException();
+            int n = numbers.Length;
+            for (int i = 0; i < n - 1; i++)
+            {
+                int minIndex = i;
+                for (int j = i + 1; j < n; j++)
+                {
+                    if (numbers[j] < numbers[minIndex])
+                    {
+                        minIndex = j;
+                    }
+                }
+                int temp = numbers[minIndex];
+                numbers[minIndex] = numbers[i];
+                numbers[i] = temp;
+            }
+            foreach (var n_ in numbers)
+            {
+                Debug.Log(n_);
+            }
         }
 
         public void LCT02_BubbleSortAscending(int[] numbers)
         {
-            throw new System.NotImplementedException();
+            int n = numbers.Length;
+            for (int i = 0; i < n - 1; i++)
+            {
+                for (int j = 0; j < n - i - 1; j++)
+                {
+                    if (numbers[j] > numbers[j + 1])
+                    {
+                        int temp = numbers[j];
+                        numbers[j] = numbers[j + 1];
+                        numbers[j + 1] = temp;
+                    }
+                }
+            }
+            foreach (var n_ in numbers)
+            {
+                Debug.Log(n_);
+            }
         }
 
         public void LCT03_InsertionSortAscending(int[] numbers)
         {
-            throw new System.NotImplementedException();
+            int n = numbers.Length;
+            for (int i = 0; i < n; i++)
+            {
+                int key = numbers[i];
+                int j = i - 1;
+
+                while (j >= 0 && numbers[j] > key)
+                {
+                    numbers[j + 1] = numbers[j];
+                    j--;
+                }
+                numbers[j + 1] = key;
+
+            }
+            foreach (var n_ in numbers)
+            {
+                Debug.Log(n_);
+            }
         }
 
         #endregion
@@ -155,7 +206,37 @@ namespace Assignment04
 
         public void EX01_FindLongestConsecutiveSequence(int[] numbers)
         {
-            throw new System.NotImplementedException();
+            if (numbers == null || numbers.Length == 0)
+            {
+                Debug.Log("The longest consecutive sequence is: 0");
+                return;
+            }
+
+            HashSet<int> set = new HashSet<int>(numbers);
+            int longest = 0;
+
+            foreach (int num in set)
+            {
+                // เช็คว่าเป็นจุดเริ่มต้นของ sequence หรือไม่
+                if (!set.Contains(num - 1))
+                {
+                    int currentNum = num;
+                    int currentStreak = 1;
+
+                    while (set.Contains(currentNum + 1))
+                    {
+                        currentNum++;
+                        currentStreak++;
+                    }
+
+                    if (currentStreak > longest)
+                    {
+                        longest = currentStreak;
+                    }
+                }
+            }
+
+            Debug.Log("The longest consecutive sequence is: " + longest);
         }
 
         #endregion

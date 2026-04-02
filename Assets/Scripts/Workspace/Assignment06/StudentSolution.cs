@@ -14,11 +14,17 @@ namespace Assignment06
             int target = 90;
             int index = -1;
 
-            // Your code here ...
-            // ...
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array[i] == target)
+                {
+                    index = i;
+                    break;
+                }
+            }
 
 
-            Debug.Log(index);
+                Debug.Log(index);
         }
 
         public void LCT02_SequentialSearch2DArray()
@@ -33,20 +39,52 @@ namespace Assignment06
             int row = -1;
             int col = -1;
 
-            // Your code here ...
-            // ...
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    if (array[i, j] == target)
+                    {
+                        row = i;
+                        col = j;
+                        break;
+                    }
+                }
+                if (row != -1) break;
+            }
 
             Debug.Log($"({row}, {col})");
         }
+
+       
 
         public void LCT03_BinarySearch()
         {
             int[] array = new int[] { 11, 12, 21, 23, 34, 45, 56, 78, 90 };
             int target = 23;
             int index = -1;
+            int left = 0;
+            int right = array.Length - 1;
 
-            // Your code here ...
-            // ...
+            while (left <= right)
+            {
+                int mid = left + (right - left) / 2;
+
+                if (array[mid] == target)
+                {
+                    index = mid;
+                    break;
+                }
+
+                if (array[mid] < target)
+                {
+                    left = mid + 1;
+                }
+                else
+                {
+                    right = mid - 1;
+                }
+            }
 
             Debug.Log(index);
         }
@@ -136,7 +174,22 @@ namespace Assignment06
 
         public void EX01_FindTargetEnemies(int[] enemyHPs, int mana)
         {
-            throw new NotImplementedException();
+            List<int> sortedHPs = new List<int>(enemyHPs);
+            sortedHPs.Sort();
+
+            int currentMana = mana;
+            foreach (int hp in sortedHPs)
+            {
+                if (currentMana >= hp)
+                {
+                    Debug.Log(hp);
+                    currentMana -= hp;
+                }
+                else
+                {
+                    break;
+                }
+            }
         }
 
         #endregion
